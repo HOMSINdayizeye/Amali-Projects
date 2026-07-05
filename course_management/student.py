@@ -12,6 +12,8 @@ class Student(ABC):
     @property
     def student_id(self) -> str:
         return self._student_id
+    if student_id == " ":
+                raise ValueError("Student ID cannot be empty.")
 
     @property
     def name(self) -> str:

@@ -54,6 +54,8 @@ def main():
         elif choice == '3':
             student_id = input("Student ID: ").strip()
             course_id = input("Course ID: ").strip()
+            if student_id == " ":
+                raise ValueError("Student ID cannot be empty.")
             
             if manager.enroll_student_in_course(student_id, course_id):
                 print("Enrollment successful!")
