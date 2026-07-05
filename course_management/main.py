@@ -54,9 +54,6 @@ def main():
         elif choice == '3':
             student_id = input("Student ID: ").strip()
             course_id = input("Course ID: ").strip()
-            if student_id == " ":
-                raise ValueError("Student ID cannot be empty.")
-            
             if manager.enroll_student_in_course(student_id, course_id):
                 print("Enrollment successful!")
             else:
@@ -78,7 +75,7 @@ def main():
                 students = manager.get_enrolled_students_in_course(course_id)
                 print(f"\nRoster for {course.name}:")
                 for s in students:
-                    print(f"  - {s.name} ({s.student_id}) - {s.get_student_type()}")
+                    print(f"  - {s.name} ({s.student_id}) ({s.email}) - {s.get_student_type()}")
                 print(f"Average enrollments: {manager.calculate_average_enrollments():.2f}")
             else:
                 print("Course not found!")

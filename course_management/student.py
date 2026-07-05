@@ -12,9 +12,7 @@ class Student(ABC):
     @property
     def student_id(self) -> str:
         return self._student_id
-    if student_id == " ":
-                raise ValueError("Student ID cannot be empty.")
-
+        
     @property
     def name(self) -> str:
         return self._name
@@ -44,7 +42,7 @@ class Student(ABC):
         pass
 
     def __repr__(self) -> str:
-        return f"Student(id={self._student_id}, name={self._name}, type={self.get_student_type()})"
+        return f"Student(id={self._student_id}, name={self._name}, email={self._email}, type={self.get_student_type()})"
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, Student):
