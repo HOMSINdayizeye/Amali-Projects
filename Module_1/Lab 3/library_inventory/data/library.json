@@ -67,51 +67,36 @@
     {
       "kind": "book",
       "book_id": "B5",
-      "title": "Amonk who sold his ferrari",
+      "title": "A monk who sold his ferrari",
       "author_id": "A2",
       "year": 2023,
       "genre": "SC-FIO",
       "copies_total": 23,
-      "copies_available": 21
+      "copies_available": 23
     }
   ],
   "borrowers": [
     {
       "borrower_id": "U1",
-      "name": "Alice Mensah",
-      "email": "alice@example.com",
-      "phone": "0201234567",
+      "name": "Amos NDAYIZEYE",
+      "email": "amos.ndayizeye@amalitech.com",
+      "phone": "+250 790911499",
       "borrowed_book_ids": [
-        "B2",
-        "B5"
+        "B2"
       ]
     },
     {
       "borrower_id": "U2",
-      "name": "Kwame Owusu",
-      "email": "kwame@example.com",
+      "name": "MUGABO Jules",
+      "email": "mjules@gmail.com",
       "phone": "",
-      "borrowed_book_ids": [
-        "B5"
-      ]
+      "borrowed_book_ids": []
     }
   ],
   "borrowings": [
     {
       "borrower_id": "U1",
       "book_id": "B2",
-      "borrowed_on": "2026-07-08",
-      "returned_on": null
-    },
-    {
-      "borrower_id": "U1",
-      "book_id": "B5",
-      "borrowed_on": "2026-07-08",
-      "returned_on": null
-    },
-    {
-      "borrower_id": "U2",
-      "book_id": "B5",
       "borrowed_on": "2026-07-08",
       "returned_on": null
     }

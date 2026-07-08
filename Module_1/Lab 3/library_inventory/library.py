@@ -152,8 +152,8 @@ class Library:
         return [b for b in self._books.values() if b.is_available]
 
     def borrowed_books(self) -> list[Book]:
-        """Books that are currently checked out (no copies available)."""
-        return [b for b in self._books.values() if not b.is_available]
+        """Books that have at least one copy currently out on loan."""
+        return [b for b in self._books.values() if b.copies_available < b.copies_total]
 
     # ==================================================================
     # Borrow / return operations

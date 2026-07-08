@@ -22,7 +22,7 @@ from library import Library
 
 
 # ======================================================================
-# Core reusable functions (required by the lab brief)
+# Core reusable functions
 # ======================================================================
 def add_book(library: Library, book: Book) -> None:
     """Add a book (or EBook/AudioBook) to the library inventory."""

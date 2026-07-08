@@ -151,7 +151,7 @@ def do_report_available(library: Library) -> None:
 
 
 def do_report_borrowed(library: Library) -> None:
-    utils.section("BORROWED BOOKS (fully checked out)")
+    utils.section("BORROWED BOOKS (copies currently out)")
     books = utils.report_borrowed_books(library)
     if not books:
         print("Nothing is currently borrowed.")
