@@ -1,0 +1,119 @@
+{
+  "authors": [
+    {
+      "author_id": "A1",
+      "name": "N Amos",
+      "nationality": "Rwandan",
+      "birth_year": 2002
+    },
+    {
+      "author_id": "A2",
+      "name": "J.R.R. Tolkien",
+      "nationality": "British",
+      "birth_year": 2000
+    },
+    {
+      "author_id": "A3",
+      "name": "J.Fils Jado",
+      "nationality": "Kenyan",
+      "birth_year": 2005
+    }
+  ],
+  "books": [
+    {
+      "kind": "book",
+      "book_id": "B1",
+      "title": "The Heart of village leader",
+      "author_id": "A1",
+      "year": 2026,
+      "genre": "Sci-Fi",
+      "copies_total": 3,
+      "copies_available": 3
+    },
+    {
+      "kind": "book",
+      "book_id": "B2",
+      "title": "The Lord of the Rings",
+      "author_id": "A2",
+      "year": 1954,
+      "genre": "Fantasy",
+      "copies_total": 2,
+      "copies_available": 1
+    },
+    {
+      "kind": "ebook",
+      "book_id": "B3",
+      "title": "Harry Potter and the Philosopher's Stone",
+      "author_id": "A3",
+      "year": 1997,
+      "genre": "Fantasy",
+      "copies_total": 5,
+      "copies_available": 5,
+      "file_format": "EPUB",
+      "file_size_mb": 2.4
+    },
+    {
+      "kind": "audiobook",
+      "book_id": "B4",
+      "title": "The Hobbit",
+      "author_id": "A2",
+      "year": 1937,
+      "genre": "Fantasy",
+      "copies_total": 1,
+      "copies_available": 1,
+      "narrator": "Rob Inglis",
+      "duration_minutes": 660
+    },
+    {
+      "kind": "book",
+      "book_id": "B5",
+      "title": "Amonk who sold his ferrari",
+      "author_id": "A2",
+      "year": 2023,
+      "genre": "SC-FIO",
+      "copies_total": 23,
+      "copies_available": 21
+    }
+  ],
+  "borrowers": [
+    {
+      "borrower_id": "U1",
+      "name": "Alice Mensah",
+      "email": "alice@example.com",
+      "phone": "0201234567",
+      "borrowed_book_ids": [
+        "B2",
+        "B5"
+      ]
+    },
+    {
+      "borrower_id": "U2",
+      "name": "Kwame Owusu",
+      "email": "kwame@example.com",
+      "phone": "",
+      "borrowed_book_ids": [
+        "B5"
+      ]
+    }
+  ],
+  "borrowings": [
+    {
+      "borrower_id": "U1",
+      "book_id": "B2",
+      "borrowed_on": "2026-07-08",
+      "returned_on": null
+    },
+    {
+      "borrower_id": "U1",
+      "book_id": "B5",
+      "borrowed_on": "2026-07-08",
+      "returned_on": null
+    },
+    {
+      "borrower_id": "U2",
+      "book_id": "B5",
+      "borrowed_on": "2026-07-08",
+      "returned_on": null
+    }
+  ]
+}
