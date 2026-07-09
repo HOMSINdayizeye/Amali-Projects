@@ -1,5 +1,12 @@
 {
-  "authors": [
+  "authors": [    
+     { 
+      "author_id": "A0",
+      "name": " N Ndayizeye",
+      "nationality": "British",
+      "birth_year": 2004
+
+     },
     {
       "author_id": "A1",
       "name": "N Amos",
