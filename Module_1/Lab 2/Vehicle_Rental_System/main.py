@@ -8,7 +8,6 @@ def build_fleet() -> RentalSystem:
     fleet = [
         Car("c001", "Toyota", "Corolla", 40.0, seats=5),
         Truck("t001", "Ford", "F-150", 70.0, capacity_tons=3.0),
-<<<<<<< HEAD
         Bike("b001", "Trek", "Marlin", 15.0, electric=True),
     ]
     return RentalSystem(fleet)
@@ -55,7 +54,6 @@ def do_add_vehicle(system: RentalSystem) -> None:
 
 def menu() -> None:
     system = build_fleet() # Build the rental system with a fleet of vehicles.
-=======
         Bike("b001", "Trek", "Marlin", 15.0, electric=False),
     ]
     return RentalSystem(fleet)
@@ -63,20 +61,16 @@ def menu() -> None:
 
 def menu() -> None:
     system = build_fleet()
->>>>>>> ffc46c93b9190a86b49b0c2466db04d9759f8d1d
     while True:
         print("\n=== Vehicle Rental System ===")
         print("1. List availability")
         print("2. Rent a vehicle")
         print("3. Return a vehicle")
-<<<<<<< HEAD
         print("4. Add a vehicle")
         print("5. Exit")
         choice = input("Choose an option (1-5): ").strip()
-=======
         print("4. Exit")
         choice = input("Choose an option (1-4): ").strip()
->>>>>>> ffc46c93b9190a86b49b0c2466db04d9759f8d1d
 
         if choice == "1":
             system.list_availability()
@@ -93,31 +87,22 @@ def menu() -> None:
         elif choice == "3":
             vid = input("Enter vehicle ID to return: ").strip()
             try:
-<<<<<<< HEAD
                 if vid not in system._fleet:
                     raise KeyError(f"No vehicle with id {vid}.")
-=======
->>>>>>> ffc46c93b9190a86b49b0c2466db04d9759f8d1d
                 system.return_vehicle(vid)
             except (KeyError, RuntimeError) as exc:
                 print(f"Error: {exc}")
 
         elif choice == "4":
-<<<<<<< HEAD
             do_add_vehicle(system)
 
         elif choice == "5":
-=======
->>>>>>> ffc46c93b9190a86b49b0c2466db04d9759f8d1d
             print("Goodbye!")
             break
 
         else:
-<<<<<<< HEAD
             print("Invalid option. Please choose 1-5.")
-=======
             print("Invalid option. Please choose 1-4.")
->>>>>>> ffc46c93b9190a86b49b0c2466db04d9759f8d1d
 
 
 if __name__ == "__main__":
