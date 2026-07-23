@@ -11,7 +11,7 @@ class EnrollmentManager:
     def add_student(self, student: Student) -> bool:
         if student.student_id in self._students:
             return False
-        self._students[student.student_id] = student
+        self._students[student.student_id] = student 
         return True
 
     def get_student(self, student_id: str) -> Optional[Student]:

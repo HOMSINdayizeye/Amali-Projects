@@ -39,7 +39,7 @@ class Car(Vehicle):
     def rental_cost(self, days: int) -> float:
         if days <= 0:
             raise ValueError("Rental days must be positive")
-        daily = self.base_rate + self.insurance_per_day
+        daily = self.rental_price
         # Weekly discount: every 7th day is free.
         free_days = days // 7
         return round(daily * (days - free_days), 2)

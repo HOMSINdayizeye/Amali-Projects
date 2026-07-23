@@ -5,7 +5,7 @@ currently-borrowed book ids is encapsulated and kept consistent through the
 ``borrow`` / ``return_book`` helpers.
 """
 
-from __future__ import annotations
+from __future__ import annotations  
 
 from typing import Optional
 

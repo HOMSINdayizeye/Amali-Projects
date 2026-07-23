@@ -57,31 +57,39 @@ def show_menu() -> None:
     print("\n" + "-" * 70)
     print("LIBRARY INVENTORY  -  MAIN MENU")
     print("-" * 70)
-    print("1. Add a book")
+    print("1. Add a book (Book / EBook / AudioBook; author auto-created if new)")
     print("2. Search books")
-    print("3. Borrow a book")
-    print("4. Return a book")
+    print("3. Borrow a book (just enter book id + your borrower id)")
+    print("4. Return a book (just enter book id + your borrower id)")
     print("5. Report: available books")
     print("6. Report: borrowed books")
     print("7. Report: books by author")
     print("8. List authors & borrowers")
+    print("9. List all books")
     print("0. Exit (data is saved automatically)")
     print("-" * 70)
 
 
 def do_add_book(library: Library) -> None:
-    """Prompt the user and add a (physical) book to the inventory."""
+    """Prompt the user and add a (physical) book, creating its author if new."""
     book_id = input("Book ID (e.g. B5): ").strip().upper()
     if not book_id:
         print("Book ID is required.")
         return
     title = input("Title: ").strip()
-    author_id = input("Author ID (must already exist): ").strip().upper()
-    try:
-        author = library.get_author(author_id)
-    except KeyError:
-        print(f"No author '{author_id}'. Add the author first.")
-        return
+
+    author_id = input("Author ID (e.g. A1, or new id): ").strip().upper()
+    author = library._authors.get(author_id)
+    if author is None:
+        # Author does not exist yet: create it from the details entered here.
+        name = input("New author name: ").strip()
+        nationality = input("Author nationality (blank = Unknown): ").strip() or "Unknown"
+        birth_year_str = input("Author birth year (blank = unknown): ").strip()
+        birth_year = int(birth_year_str) if birth_year_str else None
+        author = Author(author_id, name, nationality, birth_year)
+        library.add_author(author)
+        print(f"Created author: {author}")
+
     try:
         year = int(input("Publication year: ").strip())
         copies = int(input("Number of copies: ").strip() or "1")
@@ -90,7 +98,34 @@ def do_add_book(library: Library) -> None:
         return
     genre = input("Genre: ").strip() or "General"
 
-    book = Book(book_id, title, author, year, genre, copies_total=copies)
+    kind = input("Type (1=Book, 2=EBook, 3=AudioBook): ").strip()
+    if kind == "2":
+        file_format = input("File format (e.g. EPUB, PDF): ").strip() or "PDF"
+        try:
+            file_size_mb = float(input("File size (MB): ").strip() or "0")
+        except ValueError:
+            print("File size must be a number.")
+            return
+        book = EBook(
+            book_id, title, author, year, genre,
+            file_format=file_format, file_size_mb=file_size_mb,
+            copies_total=copies,
+        )
+    elif kind == "3":
+        narrator = input("Narrator: ").strip()
+        try:
+            duration = int(input("Duration (minutes): ").strip() or "0")
+        except ValueError:
+            print("Duration must be a whole number.")
+            return
+        book = AudioBook(
+            book_id, title, author, year, genre,
+            narrator=narrator, duration_minutes=duration,
+            copies_total=copies,
+        )
+    else:
+        book = Book(book_id, title, author, year, genre, copies_total=copies)
+
     library.add_book(book)
     library.save()
     print(f"Added: {book}")
@@ -98,7 +133,19 @@ def do_add_book(library: Library) -> None:
 
 def do_search(library: Library) -> None:
     """Prompt for filters and print matching books."""
-    query = input("Title contains (blank = any): ").strip() or None
+    query = input("Book ID or title contains (blank = any): ").strip() or None
+
+    if query is not None:
+        try:
+            book = library.get_book(query)
+        except KeyError:
+            book = None
+
+        if book is not None:
+            print(f"\nFound 1 book:")
+            print(f"  {book}")
+            return
+
     author_name = input("Author name contains (blank = any): ").strip() or None
     genre = input("Genre (blank = any): ").strip() or None
     avail = input("Available only? (y/N): ").strip().lower() == "y"
@@ -166,6 +213,17 @@ def do_report_by_author(library: Library) -> None:
         print(f"  {name}: {count} book(s)")
 
 
+def do_list_books(library: Library) -> None:
+    """Print every book in the inventory (all types)."""
+    books = library.all_books()
+    utils.section(f"ALL BOOKS ({len(books)})")
+    if not books:
+        print("No books in the library yet.")
+        return
+    for book in books:
+        print(f"  {book}")
+
+
 def do_list_people(library: Library) -> None:
     utils.section("AUTHORS")
     for author in library.all_authors():
@@ -200,6 +258,8 @@ def main() -> None:
                 do_report_by_author(library)
             elif choice == "8":
                 do_list_people(library)
+            elif choice == "9":
+                do_list_books(library)
             elif choice == "0":
                 library.save()
                 print("Goodbye!")

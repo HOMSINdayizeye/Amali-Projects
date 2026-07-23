@@ -7,11 +7,9 @@ shared state management (available vs rented) and common operations.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
 from typing import ClassVar
 
 
-@dataclass
 class Vehicle(ABC):
     """Abstract base class for all rentable vehicles.
 
@@ -20,19 +18,24 @@ class Vehicle(ABC):
     through a private attribute exposed via a read-only property.
     """
 
-    vehicle_id: str
-    brand: str
-    model: str
-    base_rate: float
-    _is_rented: bool = field(default=False, repr=False)
-
     # Default currency used when formatting prices. Subclasses may override.
     currency: ClassVar[str] = "USD"
 
-    def __post_init__(self) -> None:
-        if self.base_rate < 0:
+    def __init__(
+        self,
+        vehicle_id: str,
+        brand: str,
+        model: str,
+        base_rate: float,
+        is_rented: bool = False,
+    ) -> None:
+        if base_rate < 0:
             raise ValueError("base_rate must be non-negative")
-        self.vehicle_id = self.vehicle_id.strip().upper()
+        self.vehicle_id = vehicle_id.strip().upper()
+        self.brand = brand
+        self.model = model
+        self.base_rate = base_rate
+        self._is_rented = is_rented
 
     @property
     def is_rented(self) -> bool:
@@ -89,3 +92,24 @@ class Vehicle(ABC):
             f"{self.vehicle_type}: {self.brand} {self.model} "
             f"[{self.vehicle_id}] - {self.rental_price:.2f} {self.currency}/day"
         )
+
+    def __repr__(self) -> str:
+        return (
+            f"{type(self).__name__}("
+            f"vehicle_id={self.vehicle_id!r}, brand={self.brand!r}, "
+            f"model={self.model!r}, base_rate={self.base_rate!r}, "
+            f"is_rented={self._is_rented!r})"
+        )
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Vehicle):
+            return NotImplemented
+        return (
+            self.vehicle_id == other.vehicle_id
+            and self.brand == other.brand
+            and self.model == other.model
+            and self.base_rate == other.base_rate
+        )
+
+    def __hash__(self) -> int:
+        return hash((self.vehicle_id, self.brand, self.model, self.base_rate))

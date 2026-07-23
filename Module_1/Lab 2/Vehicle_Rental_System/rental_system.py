@@ -38,8 +38,8 @@ class RentalSystem:
         return [v for v in self._fleet.values() if not v.is_rented]
 
     def rented_vehicles(self) -> list[Vehicle]:
-        return [v for v in self._fleet.values() if v.is_rented]
-
+        return [v for v in self._fleet.values() if v.is_rented]  
+ 
     def list_availability(self) -> None:
         if not self._fleet:
             print("No vehicles in the fleet.")

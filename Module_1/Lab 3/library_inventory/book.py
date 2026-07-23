@@ -292,7 +292,7 @@ def book_from_dict(data: dict, authors_by_id: dict[str, Author]) -> Book:
         )
     elif kind == "audiobook":
         book = AudioBook(
-            book_id=data["book_id"],
+            book_id=data["book_id"], 
             title=data["title"],
             author=author,
             year=data["year"],

@@ -94,6 +94,16 @@ class Library:
             raise ValueError(f"Borrower {borrower.borrower_id} already exists.")
         self._borrowers[borrower.borrower_id] = borrower
 
+    def get_or_create_borrower(self, borrower_id: str) -> Borrower:
+        """Return the borrower if it exists, otherwise create it from the
+        id alone (no name/email required) and register it."""
+        bid = borrower_id.strip().upper()
+        if bid in self._borrowers:
+            return self._borrowers[bid]
+        borrower = Borrower(bid, name="Unknown", email="unknown@example.com")
+        self._borrowers[bid] = borrower
+        return borrower
+
     # ==================================================================
     # Lookups
     # ==================================================================
@@ -136,7 +146,7 @@ class Library:
         matches = [
             book
             for book in self._books.values()
-            if (q is None or q in book.title.lower())
+            if (q is None or q in book.title.lower() or q == book.resource_id.lower())
             and (a is None or a in book.author.name.lower())
             and (g is None or g == book.genre.lower())
             and (not available_only or book.is_available)
@@ -159,9 +169,13 @@ class Library:
     # Borrow / return operations
     # ==================================================================
     def borrow_book(self, book_id: str, borrower_id: str) -> None:
-        """Lend a book to a borrower and record the transaction."""
+        """Lend a book to a borrower and record the transaction.
+
+        The borrower is created on the fly from the id if it does not yet
+        exist, so no pre-registration is required.
+        """
         book = self.get_book(book_id)
-        borrower = self.get_borrower(borrower_id)
+        borrower = self.get_or_create_borrower(borrower_id)
 
         book.borrow_copy()          # raises if unavailable
         borrower.borrow(book.resource_id)
@@ -175,9 +189,13 @@ class Library:
         )
 
     def return_book(self, book_id: str, borrower_id: str) -> None:
-        """Return a borrowed book and close the open transaction."""
+        """Return a borrowed book and close the open transaction.
+
+        The borrower is created on the fly from the id if it does not yet
+        exist (it will then simply have nothing to return).
+        """
         book = self.get_book(book_id)
-        borrower = self.get_borrower(borrower_id)
+        borrower = self.get_or_create_borrower(borrower_id)
 
         borrower.return_book(book.resource_id)  # raises if not held
         book.return_copy()

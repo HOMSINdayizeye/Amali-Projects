@@ -36,7 +36,10 @@ def search_books(
     genre: Optional[str] = None,
     available_only: bool = False,
 ) -> list[Book]:
-    """Search the inventory by title, author, genre and/or availability."""
+    """Search the inventory by book id or title, author, genre and/or availability.
+
+    The ``query`` matches against either the book's id or its title.
+    """
     return library.search_books(
         query=query,
         author_name=author_name,
@@ -76,8 +79,7 @@ def report_books_by_author(library: Library) -> dict[str, int]:
 def report_active_loans(library: Library) -> list[dict]:
     """Return all borrowing records that have not yet been returned."""
     # Dict comprehension over the history keeps only open loans.
-    return [r for r in library.borrowing_history() if r["returned_on"] is None]
-
+    return [r for r in library.borrowing_history() if r["returned_on"] is None] 
 
 # ======================================================================
 # Small presentation helpers

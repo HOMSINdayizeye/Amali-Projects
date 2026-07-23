@@ -37,6 +37,5 @@ class Bike(Vehicle):
     def rental_cost(self, days: int) -> float:
         if days <= 0:
             raise ValueError("Rental days must be positive")
-        hours = days * 24
         rate = self.hourly_rate * (1.5 if self.electric else 1.0)
-        return round(rate * hours, 2)
+        return round(rate * days, 2)

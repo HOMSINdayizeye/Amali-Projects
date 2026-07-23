@@ -1,12 +1,11 @@
 {
-  "authors": [    
-     { 
+  "authors": [
+    {
       "author_id": "A0",
-      "name": " N Ndayizeye",
+      "name": "N Ndayizeye",
       "nationality": "British",
       "birth_year": 2004
-
-     },
+    },
     {
       "author_id": "A1",
       "name": "N Amos",
@@ -24,6 +23,36 @@
       "name": "J.Fils Jado",
       "nationality": "Kenyan",
       "birth_year": 2005
+    },
+    {
+      "author_id": "A111",
+      "name": "Ami",
+      "nationality": "rwa",
+      "birth_year": 1998
+    },
+    {
+      "author_id": "AW",
+      "name": "WARDA",
+      "nationality": "KN",
+      "birth_year": 222
+    },
+    {
+      "author_id": "A9",
+      "name": "New E Author",
+      "nationality": "Rwandan",
+      "birth_year": 2000
+    },
+    {
+      "author_id": "A10",
+      "name": "Audio Author",
+      "nationality": "Kenyan",
+      "birth_year": 1990
+    },
+    {
+      "author_id": "A113",
+      "name": "Amii",
+      "nationality": "us",
+      "birth_year": 2001
     }
   ],
   "books": [
@@ -35,7 +64,7 @@
       "year": 2026,
       "genre": "Sci-Fi",
       "copies_total": 3,
-      "copies_available": 3
+      "copies_available": 2
     },
     {
       "kind": "book",
@@ -79,32 +108,116 @@
       "year": 2023,
       "genre": "SC-FIO",
       "copies_total": 23,
+      "copies_available": 22
+    },
+    {
+      "kind": "book",
+      "book_id": "B10",
+      "title": "Math",
+      "author_id": "A1",
+      "year": 2022,
+      "genre": "hj",
+      "copies_total": 2,
+      "copies_available": 2
+    },
+    {
+      "kind": "book",
+      "book_id": "B32",
+      "title": "PHY",
+      "author_id": "A2",
+      "year": 20,
+      "genre": "ER",
+      "copies_total": 2,
+      "copies_available": 2
+    },
+    {
+      "kind": "book",
+      "book_id": "B111",
+      "title": "BIO",
+      "author_id": "A111",
+      "year": 23,
+      "genre": "comedy",
+      "copies_total": 32,
+      "copies_available": 32
+    },
+    {
+      "kind": "book",
+      "book_id": "B7",
+      "title": "SD",
+      "author_id": "AW",
+      "year": 21,
+      "genre": "SD",
+      "copies_total": 23,
       "copies_available": 23
+    },
+    {
+      "kind": "ebook",
+      "book_id": "B50",
+      "title": "My EBook",
+      "author_id": "A9",
+      "year": 2024,
+      "genre": "Fantasy",
+      "copies_total": 3,
+      "copies_available": 3,
+      "file_format": "EPUB",
+      "file_size_mb": 1.5
+    },
+    {
+      "kind": "audiobook",
+      "book_id": "B52",
+      "title": "My Audio",
+      "author_id": "A10",
+      "year": 2021,
+      "genre": "Sci-Fi",
+      "copies_total": 2,
+      "copies_available": 2,
+      "narrator": "Rob",
+      "duration_minutes": 120
+    },
+    {
+      "kind": "audiobook",
+      "book_id": "B78",
+      "title": "HH",
+      "author_id": "A113",
+      "year": 23,
+      "genre": "rt",
+      "copies_total": 23,
+      "copies_available": 23,
+      "narrator": "sami",
+      "duration_minutes": 34
     }
   ],
   "borrowers": [
     {
-      "borrower_id": "U1",
-      "name": "Amos NDAYIZEYE",
-      "email": "amos.ndayizeye@amalitech.com",
-      "phone": "+250 790911499",
+      "borrower_id": "B11",
+      "name": "NDAYIZEYE",
+      "email": "ndayizeye@gmail.com",
+      "phone": "",
       "borrowed_book_ids": [
-        "B2"
+        "B5"
       ]
     },
     {
-      "borrower_id": "U2",
-      "name": "MUGABO Jules",
-      "email": "mjules@gmail.com",
+      "borrower_id": "A1",
+      "name": "Unknown",
+      "email": "unknown@example.com",
       "phone": "",
-      "borrowed_book_ids": []
+      "borrowed_book_ids": [
+        "B1"
+      ]
     }
   ],
   "borrowings": [
     {
-      "borrower_id": "U1",
-      "book_id": "B2",
-      "borrowed_on": "2026-07-08",
+      "borrower_id": "B11",
+      "book_id": "B5",
+      "borrowed_on": "2026-07-17",
+      "returned_on": null
+    },
+    {
+      "borrower_id": "A1",
+      "book_id": "B1",
+      "borrowed_on": "2026-07-22",
       "returned_on": null
     }
   ]

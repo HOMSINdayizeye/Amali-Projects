@@ -45,7 +45,7 @@ def test_search_by_title_and_genre(populated: Library) -> None:
     # Comprehension-based search should match a substring of the title.
     assert len(utils.search_books(populated, query="salmon")) == 1
     # Genre filter is exact (case-insensitive).
-    assert len(utils.search_books(populated, genre="scifi")) == 2
+    assert len(utils.search_books(populated, genre="sci-fi")) == 2
     # Combined filters narrow the result set.
     assert len(utils.search_books(populated, genre="fantasy")) == 0
 
